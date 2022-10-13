@@ -24,6 +24,9 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Get Tag name
+      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+
     - name: Build, tag, and push the image to Amazon ECR
       id: build-image
       env:
